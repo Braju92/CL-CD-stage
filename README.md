@@ -12,3 +12,8 @@
 >	traduce la documentazione python ottenuta tramite doxygen in uno standard conforme con quello fornito per gli altri linguaggi.
 > - ### Dockerfile: 
 >	documento per la creazione di un immagine che contenga tutto il necessario; python, doxygen, doxypypy.
+> ## Instructions
+> - use doxygen -g <config_file> to create doxygen config file
+> - set FILTER_PATTERNS = *.py=py_filter in doxygen config file to run Python code through doxypypy.
+> - use doxygen <config_file> to generate documentation
+> - more at https://www.doxygen.nl/manual/doxygen_usage.html
