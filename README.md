@@ -6,9 +6,9 @@
 >	
 > ## **Tools:**
 >
-> ### - doxygen: 
+> - ### doxygen: 
 >	produce documentazione analizzando il codice.
-> ### - doxypypy: 
+> - ### doxypypy: 
 >	traduce la documentazione python ottenuta tramite doxygen in uno standard conforme con quello fornito per gli altri linguaggi.
-> ### - Dockerfile: 
+> - ### Dockerfile: 
 >	documento per la creazione di un immagine che contenga tutto il necessario; python, doxygen, doxypypy.
