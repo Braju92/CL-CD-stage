@@ -13,6 +13,16 @@
 > - ### Dockerfile: 
 >	documento per la creazione di un immagine che contenga tutto il necessario; python, doxygen, doxypypy.
 > ## Instructions
+> - install doxygen
+> - install pip
+> - install doxypypy
+> - install doxygen-gui
+> - install graphviz (per le dipendenze di Dot)
+> - crea e sposta py_filter nel $PATH
+>> "#!/bin/bash
+doxypypy -a -c $1"
+> - copy doxygen-awesome-css
+>> make install
 > - use doxygen -g <config_file> to create doxygen config file
 > - set FILTER_PATTERNS = *.py=py_filter in doxygen config file to run Python code through doxypypy.
 > - use doxygen <config_file> to generate documentation
