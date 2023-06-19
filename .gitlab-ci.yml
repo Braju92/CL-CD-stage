@@ -1,0 +1,10 @@
+include:
+  # PUSH IMMAGINI DOCKERHUB
+  - project: 'braju-test-group/marchesini-test'
+    file: '/templates/dockerhub-push/shared-push.yml'
+  # RUNNER WINDOWS TEST
+  - project: 'braju-test-group/marchesini-test'
+    file: '/templates/windows-example/windows-test.yml'
+  # AUTODOCUMENTATION DOXYPYPY
+  - project: 'braju-test-group/marchesini-test'
+    file: '/templates/autodocs/autodocs.yml'

@@ -1,0 +1,20 @@
+# autodocs.yml
+pages:
+    stage: deploy
+    rules:
+    - when: manual
+      allow_failure: true
+# The Docker image that will be used to build your app
+    image: brjsfn/alpine:doxypypy1
+# Functions that should be executed before the build script is run
+    before_script:
+     - apk update
+    tags:
+    - local
+    script:
+    - cd $PWD/code/
+    - doxygen Doxyfile
+    - mv $PWD/docs/html/ public/
+    artifacts:
+      paths:
+        - public/

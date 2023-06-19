@@ -1,0 +1,14 @@
+windows-job:
+    tags:
+        - windows
+    stage: test
+    #image: mcr.microsoft.com/windows/nanoserver:ltsc2022
+    #before_script:
+        #- git config --global --add safe.directory C:/builds/braju-test-group/marchesini-test
+    rules:
+        - when: manual
+          allow_failure: true
+    script:
+        - echo "Running Windows-specific job"
+        - dir  # Example Windows command to list directory contents
+        - echo "Windows job completed"

@@ -1,0 +1,42 @@
+# shared-push.yml
+
+shared_push:
+  rules:
+   - when: manual
+     allow_failure: true
+
+  tags:
+   - local 
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind  
+  script:
+   - echo "Building image..."
+   - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD docker.io
+   - |
+      for IMG_DIR in $PWD/docker/*; do
+        if [ -d "$IMG_DIR" ]; then
+          cd $IMG_DIR
+          IMG=$(grep 'IMG=' Dockerfile | cut -d'=' -f2)
+          TAG=$(grep 'TAG=' "$IMG_DIR/Dockerfile" | cut -d'=' -f2)
+          REPO="$DOCKERHUB_USERNAME/$IMG:$TAG"
+          echo "Checking if image $REPO already exists..."
+          if docker pull $REPO | grep -q "latest"; then
+            echo "Image $REPO already exists with 'latest' tag. Building and pushing a new image."
+            docker build -t $REPO .
+            docker push $REPO
+            echo "New image $REPO pushed successfully"
+          elif docker pull $REPO; then
+            echo "Image $REPO already exists but does not have 'latest' tag. Skipping build and push."
+          else
+            echo "Building image $IMG:$TAG"
+            docker build -t $REPO .
+            echo "Pushing image $REPO"
+            docker push $REPO
+            echo "Image $REPO pushed successfully"
+          fi
+          cd ..
+        fi
+      done
+  
