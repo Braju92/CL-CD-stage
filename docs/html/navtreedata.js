@@ -24,17 +24,23 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
-    [ "doxypypy-automation", "index.html", [
-      [ "<strong>Tools:</strong>", "index.html#autotoc_md1", null ],
-      [ "Instructions", "index.html#autotoc_md2", null ]
+  [ "Stage Marchesini", "index.html", [
+    [ "<strong>doxypypy-automation</strong>", "md_test__r_e_a_d_m_e.html", null ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
