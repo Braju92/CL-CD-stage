@@ -5,16 +5,26 @@ pages:
     - when: manual
       allow_failure: true
 # The Docker image that will be used to build your app
-    image: brjsfn/alpine:doxypypy1
+    image: brjsfn/alpine:doxypypy-automation
 # Functions that should be executed before the build script is run
     before_script:
      - apk update
     tags:
     - local
     script:
-    - cd $PWD/code/
+    - PROJECT_DIR=${PWD}
+    - echo "project_dir is ${PROJECT_DIR}"
+    - NAME=${PROJECT_DIR##*/}
+    - echo "name is ${NAME^}"
+    - echo "output_directory is $OUTPUT_DIRECTORY"
+    - PROJECT_NAME=$(echo "${NAME^}")
+    - echo "PROJECT_NAME is ${PROJECT_NAME}"
+    - cd $PWD/code/      # entro in code
+    - EXCLUDED_DIR=$(echo $PWD/doxygen-awesome-css)
+    - echo "excluded_dir is ${EXCLUDED_DIR}"
     - doxygen Doxyfile
-    - mv $PWD/docs/html/ public/
+    - cd ..  # torno a root
+    - cp -r $PWD/code/doc/html/* $PWD/public/
     artifacts:
       paths:
         - public/
